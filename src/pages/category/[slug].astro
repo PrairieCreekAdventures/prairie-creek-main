@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const categoryMap: Record<string, { name: string; description: string }> = {
+  'farm-life': { name: 'Farm Life', description: 'Daily happenings with the animals, the garden, and everyone in between.' },
+  'recipes': { name: 'Recipe', description: 'Cooking from the kitchen garden, grandmother\'s recipe box, and whatever\'s on the counter.' },
+  'hope-faith': { name: 'Hope & Faith', description: 'Adoption, answered prayers, devotionals, and the long road to now.' },
+  'june-bug': { name: 'June Bug\'s Journey', description: 'Restoring a vintage camper and everything she\'s teaching me along the way.' },
+  'garden': { name: 'The Garden', description: 'Wildflowers, raised beds, the wildflower field that\'s coming.' },
+  'savvy-bunny': { name: 'Savvy Bunny', description: 'Little stories for little readers, starring our very own heroine.' },
+};
+
+export async function getStaticPaths() {
+  const slugs = ['farm-life', 'recipes', 'hope-faith', 'june-bug', 'garden', 'savvy-bunny'];
+  return slugs.map(slug => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const cat = categoryMap[slug as string];
+
+const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Match by category name — flexible to handle hope-faith / Hope & Faith etc
+const posts = allPosts.filter(p => {
+  const pCat = p.data.category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  return pCat === slug || p.data.category === cat?.name;
+});
+
+function fmtDate(d: Date) {
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+---
+
+<BaseLayout title={`${cat?.name || 'Category'} — Prairie Creek Adventures`}>
+
+<section class="archive">
+  <header class="archive__header">
+    <span class="about-page__eyebrow">Category</span>
+    <h1 class="archive__title"><em>{cat?.name}</em></h1>
+    <p class="archive__sub">{cat?.description}</p>
+  </header>
+
+  {posts.length === 0 ? (
+    <div style="text-align: center; max-width: 520px; margin: 0 auto; padding: 3rem var(--gutter); font-family: var(--serif); font-style: italic; color: var(--brown);">
+      <p style="font-size: 1.1rem; line-height: 1.6;">Nothing here yet — but Kayla is writing. Check back soon, or <a href="/#subscribe" style="color: var(--poppy); border-bottom: 1px solid currentColor;">subscribe to the newsletter</a> to know when new posts land in this category.</p>
+    </div>
+  ) : (
+    <div class="archive__grid">
+      {posts.map(post => (
+        <article class="post">
+          <a href={`/journal/${post.id}`} class="post__image">
+            {post.data.image ? (
+              <img src={post.data.image} alt={post.data.imageAlt || post.data.title} />
+            ) : (
+              <svg class="post__placeholder" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="300" fill="#A9BE8F"/>
+                <g transform="translate(200, 150)">
+                  <ellipse cx="0" cy="-10" rx="18" ry="10" fill="#F4B6C2"/>
+                  <ellipse cx="14" cy="6" rx="18" ry="10" transform="rotate(72 14 6)" fill="#F4B6C2"/>
+                  <ellipse cx="4" cy="22" rx="18" ry="10" transform="rotate(144 4 22)" fill="#F4B6C2"/>
+                  <ellipse cx="-14" cy="14" rx="18" ry="10" transform="rotate(216 -14 14)" fill="#F4B6C2"/>
+                  <ellipse cx="-12" cy="-6" rx="18" ry="10" transform="rotate(288 -12 -6)" fill="#F4B6C2"/>
+                  <circle cx="0" cy="4" r="7" fill="#E8B84A"/>
+                </g>
+              </svg>
+            )}
+          </a>
+          <div class="post__content">
+            <div class="post__meta">
+              <span class="post__cat">{post.data.category}</span>
+              <span class="dot">·</span>
+              <span>{fmtDate(post.data.date)}</span>
+            </div>
+            <h3 class="post__title"><a href={`/journal/${post.id}`}>{post.data.title}</a></h3>
+            <p class="post__excerpt">{post.data.excerpt}</p>
+            <span class="post__author">— {post.data.author}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
+</section>
+
+</BaseLayout>

@@ -1,0 +1,429 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Wildflowers from '../components/Wildflowers.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featured = allPosts.find(p => p.data.featured) || allPosts[0];
+const journalPosts = allPosts.filter(p => p.id !== featured?.id).slice(0, 4);
+
+function fmtDate(d: Date) {
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+const categories = [
+  { slug: 'farm-life', num: '01', title: 'Farm Life', sub: 'Daily happenings with the animals, the garden, and everyone in between.', ornament: 'sprig' },
+  { slug: 'recipes', num: '02', title: 'Recipes', sub: 'Cooking from the kitchen garden, grandmother\'s recipe box, and whatever\'s on the counter.', ornament: 'poppy' },
+  { slug: 'hope-faith', num: '03', title: 'Hope &amp; Faith', sub: 'Adoption, answered prayers, devotionals, and the long road to now.', ornament: 'cosmos' },
+  { slug: 'june-bug', num: '04', title: 'June Bug\'s Journey', sub: 'Restoring a vintage camper and everything she\'s teaching me along the way.', ornament: 'bouquet' },
+  { slug: 'garden', num: '05', title: 'The Garden', sub: 'Wildflowers, raised beds, the wildflower field that\'s coming.', ornament: 'cosmos' },
+  { slug: 'savvy-bunny', num: '06', title: 'Savvy Bunny', sub: 'Little stories for little readers, starring our very own heroine.', ornament: 'both' },
+];
+---
+
+<BaseLayout>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__grid">
+    <div class="hero__text">
+      <div class="eyebrow">
+        <span class="eyebrow__bar"></span>
+        <span>A lifestyle journal from Arkansas</span>
+      </div>
+
+      <h1 class="hero__wordmark">Prairie Creek</h1>
+      <p class="hero__adventures">Adventures</p>
+
+      <p class="hero__lede">
+        Home to one family, a few animals, a vintage camper named June Bug, and a whole lot of hope.
+      </p>
+
+      <div class="hero__meta">
+        <a href="/about" class="btn btn--primary">
+          <span>Read our story</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L7 1m6 6l-6 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <span class="hero__byline">— KAYLA &amp; DAVID</span>
+      </div>
+    </div>
+
+    <figure class="hero__image">
+      <div class="hero__image-wrap">
+        <!-- Placeholder illustration until a real photo is uploaded -->
+        <svg class="hero__illustration" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="heroSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FDF6EC"/>
+              <stop offset="55%" stop-color="#F4DDC4"/>
+              <stop offset="100%" stop-color="#E8B88A"/>
+            </linearGradient>
+            <linearGradient id="heroHill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#A9BE8F"/>
+              <stop offset="100%" stop-color="#7d8866"/>
+            </linearGradient>
+            <linearGradient id="heroField" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#9AA888"/>
+              <stop offset="100%" stop-color="#6d7a52"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#heroSky)"/>
+          <circle cx="300" cy="130" r="40" fill="#E8B84A" opacity="0.7"/>
+          <circle cx="300" cy="130" r="25" fill="#F4D78A"/>
+          <path d="M0,240 Q100,210 200,230 T400,230 L400,500 L0,500 Z" fill="url(#heroHill)" opacity="0.7"/>
+          <path d="M0,290 Q120,270 240,285 T400,285 L400,500 L0,500 Z" fill="url(#heroField)"/>
+
+          <!-- Wildflowers scattered in the field -->
+          <g opacity="0.9">
+            <ellipse cx="80" cy="380" rx="7" ry="4" fill="#E85D50"/>
+            <ellipse cx="85" cy="376" rx="7" ry="4" transform="rotate(72 85 376)" fill="#E85D50"/>
+            <circle cx="82" cy="380" r="2" fill="#2d3a2c"/>
+
+            <ellipse cx="140" cy="400" rx="6" ry="3.5" fill="#F4B6C2"/>
+            <ellipse cx="144" cy="397" rx="6" ry="3.5" transform="rotate(72 144 397)" fill="#F4B6C2"/>
+            <circle cx="141" cy="400" r="1.8" fill="#E8B84A"/>
+
+            <ellipse cx="220" cy="390" rx="7" ry="4" fill="#E85D50"/>
+            <ellipse cx="225" cy="386" rx="7" ry="4" transform="rotate(72 225 386)" fill="#E85D50"/>
+            <circle cx="222" cy="390" r="2" fill="#2d3a2c"/>
+
+            <ellipse cx="290" cy="410" rx="6" ry="3.5" fill="#F4B6C2"/>
+            <ellipse cx="294" cy="407" rx="6" ry="3.5" transform="rotate(72 294 407)" fill="#F4B6C2"/>
+            <circle cx="291" cy="410" r="1.8" fill="#E8B84A"/>
+
+            <ellipse cx="340" cy="395" rx="7" ry="4" fill="#E85D50"/>
+            <ellipse cx="345" cy="391" rx="7" ry="4" transform="rotate(72 345 391)" fill="#E85D50"/>
+            <circle cx="342" cy="395" r="2" fill="#2d3a2c"/>
+
+            <ellipse cx="50" cy="440" rx="5" ry="3" fill="#B8A8D4"/>
+            <ellipse cx="180" cy="450" rx="5" ry="3" fill="#B8A8D4"/>
+            <ellipse cx="320" cy="455" rx="5" ry="3" fill="#B8A8D4"/>
+          </g>
+
+          <!-- Grass strokes -->
+          <g stroke="#5f6a4a" stroke-width="0.8" fill="none" opacity="0.4">
+            <path d="M0,360 Q100,355 200,365 T400,360"/>
+            <path d="M0,390 Q100,385 200,395 T400,390"/>
+            <path d="M0,420 Q100,415 200,425 T400,420"/>
+          </g>
+
+          <!-- Small barn in distance -->
+          <g transform="translate(250,210)" opacity="0.85">
+            <path d="M0,40 L0,15 L15,0 L45,0 L60,15 L60,40 Z" fill="#8a4520"/>
+            <rect x="25" y="20" width="10" height="20" fill="#3d1d0a"/>
+            <path d="M0,15 L60,15" stroke="#5d2f15" stroke-width="0.8"/>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="hero__caption">
+        <span class="hero__caption-rule"></span>
+        <span>The view from our porch at dusk — somewhere in the hill country of Arkansas.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- WELCOME / ABOUT TEASER -->
+<section class="about-teaser">
+  <div class="about-teaser__inner">
+    <div class="about-teaser__left">
+      <div class="eyebrow">
+        <span class="eyebrow__bar"></span>
+        <span>Welcome, friend</span>
+      </div>
+      <h2 class="about-teaser__title">
+        We waited thirteen years<br/>
+        <em>for this life.</em>
+      </h2>
+      <p class="about-teaser__body">
+        For most of our marriage, David and I were waiting. For babies that didn't come, for adoptions that fell through, for a plan we couldn't make work no matter how hard we tried. Then one day we stopped waiting and started living — and that's when everything began.
+      </p>
+      <p class="about-teaser__body">
+        We bought ten acres from my grandfather. Put a tiny house on it. Got chickens, pigs, goats, turkeys, two Great Pyrenees puppies, a mini horse, a mini zebu cow. And on New Year's Day 2026, we got the phone call that made us a family. Her name is Savannah. She's our joy.
+      </p>
+      <p class="about-teaser__body">
+        This is where we document all of it — the farm, the recipes, the slow mornings, the hard-won hope.
+      </p>
+      <a href="/about" class="btn btn--ghost" style="margin-top: 1.25rem;">
+        <span>Read our full story</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L7 1m6 6l-6 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="about-teaser__signature">Kayla &amp; David</div>
+    </div>
+
+    <div class="about-teaser__right">
+      <div class="about-teaser__image-wrap">
+        <!-- Placeholder wildflower meadow illustration -->
+        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="abSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F4DDC4"/>
+              <stop offset="100%" stop-color="#E8B88A"/>
+            </linearGradient>
+            <linearGradient id="abField" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#9AA888"/>
+              <stop offset="100%" stop-color="#6d7a52"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#abSky)"/>
+          <path d="M0,200 Q100,180 200,195 T400,200 L400,500 L0,500 Z" fill="url(#abField)"/>
+
+          <!-- Dense wildflower field -->
+          <g>
+            <!-- Poppies -->
+            <g>
+              <ellipse cx="70" cy="280" rx="10" ry="6" fill="#E85D50"/>
+              <ellipse cx="78" cy="275" rx="10" ry="6" transform="rotate(72 78 275)" fill="#E85D50"/>
+              <circle cx="74" cy="278" r="3" fill="#2d3a2c"/>
+            </g>
+            <g>
+              <ellipse cx="180" cy="260" rx="10" ry="6" fill="#E85D50"/>
+              <ellipse cx="188" cy="255" rx="10" ry="6" transform="rotate(72 188 255)" fill="#E85D50"/>
+              <circle cx="184" cy="258" r="3" fill="#2d3a2c"/>
+            </g>
+            <g>
+              <ellipse cx="300" cy="290" rx="10" ry="6" fill="#E85D50"/>
+              <ellipse cx="308" cy="285" rx="10" ry="6" transform="rotate(72 308 285)" fill="#E85D50"/>
+              <circle cx="304" cy="288" r="3" fill="#2d3a2c"/>
+            </g>
+            <g>
+              <ellipse cx="130" cy="360" rx="10" ry="6" fill="#E85D50"/>
+              <ellipse cx="138" cy="355" rx="10" ry="6" transform="rotate(72 138 355)" fill="#E85D50"/>
+              <circle cx="134" cy="358" r="3" fill="#2d3a2c"/>
+            </g>
+            <g>
+              <ellipse cx="250" cy="390" rx="10" ry="6" fill="#E85D50"/>
+              <ellipse cx="258" cy="385" rx="10" ry="6" transform="rotate(72 258 385)" fill="#E85D50"/>
+              <circle cx="254" cy="388" r="3" fill="#2d3a2c"/>
+            </g>
+            <!-- Cosmos -->
+            <g>
+              <ellipse cx="110" cy="300" rx="8" ry="5" fill="#F4B6C2"/>
+              <ellipse cx="118" cy="307" rx="8" ry="5" transform="rotate(72 118 307)" fill="#F4B6C2"/>
+              <circle cx="114" cy="303" r="3" fill="#E8B84A"/>
+            </g>
+            <g>
+              <ellipse cx="230" cy="330" rx="8" ry="5" fill="#F4B6C2"/>
+              <ellipse cx="238" cy="337" rx="8" ry="5" transform="rotate(72 238 337)" fill="#F4B6C2"/>
+              <circle cx="234" cy="333" r="3" fill="#E8B84A"/>
+            </g>
+            <g>
+              <ellipse cx="340" cy="350" rx="8" ry="5" fill="#F4B6C2"/>
+              <ellipse cx="348" cy="357" rx="8" ry="5" transform="rotate(72 348 357)" fill="#F4B6C2"/>
+              <circle cx="344" cy="353" r="3" fill="#E8B84A"/>
+            </g>
+            <g>
+              <ellipse cx="60" cy="400" rx="8" ry="5" fill="#F4B6C2"/>
+              <ellipse cx="68" cy="407" rx="8" ry="5" transform="rotate(72 68 407)" fill="#F4B6C2"/>
+              <circle cx="64" cy="403" r="3" fill="#E8B84A"/>
+            </g>
+            <g>
+              <ellipse cx="190" cy="420" rx="8" ry="5" fill="#F4B6C2"/>
+              <ellipse cx="198" cy="427" rx="8" ry="5" transform="rotate(72 198 427)" fill="#F4B6C2"/>
+              <circle cx="194" cy="423" r="3" fill="#E8B84A"/>
+            </g>
+            <!-- Lilac touches -->
+            <ellipse cx="40" cy="340" rx="6" ry="3.5" fill="#B8A8D4"/>
+            <ellipse cx="160" cy="410" rx="6" ry="3.5" fill="#B8A8D4"/>
+            <ellipse cx="280" cy="440" rx="6" ry="3.5" fill="#B8A8D4"/>
+            <ellipse cx="360" cy="420" rx="6" ry="3.5" fill="#B8A8D4"/>
+            <!-- Honey/yellow dots -->
+            <circle cx="90" cy="460" r="4" fill="#E8B84A"/>
+            <circle cx="210" cy="475" r="4" fill="#E8B84A"/>
+            <circle cx="330" cy="465" r="4" fill="#E8B84A"/>
+          </g>
+
+          <!-- Grass -->
+          <g stroke="#5f6a4a" stroke-width="0.7" fill="none" opacity="0.4">
+            <path d="M0,320 Q100,315 200,325 T400,320"/>
+            <path d="M0,370 Q100,365 200,375 T400,370"/>
+            <path d="M0,430 Q100,425 200,435 T400,430"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="categories__inner">
+    <div class="section-head">
+      <div class="section-head__num">Explore the journal</div>
+      <h3 class="section-head__title">Things we <em>write about</em></h3>
+      <p class="section-head__sub">Life on the farm is a lot of things at once. Here's where to find each kind of story.</p>
+    </div>
+
+    <div class="categories__grid">
+      {categories.map(cat => (
+        <a href={`/category/${cat.slug}`} class="cat-card">
+          <Wildflowers variant={cat.ornament as any} size={48} class="cat-card__ornament" />
+          <span class="cat-card__num">{cat.num}</span>
+          <h4 class="cat-card__title" set:html={cat.title}></h4>
+          <p class="cat-card__sub">{cat.sub}</p>
+          <span class="cat-card__count">View stories →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- HOPE RIBBON -->
+<section class="ribbon">
+  <Wildflowers variant="cosmos" size={70} class="ribbon__ornament ribbon__ornament--left" />
+  <Wildflowers variant="poppy" size={70} class="ribbon__ornament ribbon__ornament--right" />
+  <div class="ribbon__inner">
+    <div class="ribbon__eyebrow">The one-word promise</div>
+    <div class="ribbon__word">hope.</div>
+    <p class="ribbon__text">
+      Every post, every recipe, every picture of that little face — rooted in what we've been given and who we've become. If you need hope today, you're in the right place.
+    </p>
+  </div>
+</section>
+
+<!-- JOURNAL / RECENT POSTS -->
+<section class="journal">
+  <div class="journal__inner">
+    <div class="section-head">
+      <div class="section-head__num">From the journal</div>
+      <h3 class="section-head__title">Lately, at <em>Prairie Creek</em></h3>
+      <p class="section-head__sub">The newest stories from the farm, the kitchen, and the long way home.</p>
+    </div>
+
+    <div class="journal__grid">
+      {featured && (
+        <article class="post post--large">
+          <a href={`/journal/${featured.id}`} class="post__image">
+            {featured.data.image ? (
+              <img src={featured.data.image} alt={featured.data.imageAlt || featured.data.title} />
+            ) : (
+              <svg class="post__placeholder" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="pLarge" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#A9BE8F"/>
+                    <stop offset="100%" stop-color="#7d8866"/>
+                  </linearGradient>
+                </defs>
+                <rect width="800" height="450" fill="url(#pLarge)"/>
+                <g transform="translate(400, 225)">
+                  <ellipse cx="-15" cy="-10" rx="25" ry="15" transform="rotate(-30 -15 -10)" fill="#E85D50" opacity="0.85"/>
+                  <ellipse cx="15" cy="-25" rx="25" ry="15" transform="rotate(20 15 -25)" fill="#E85D50" opacity="0.85"/>
+                  <ellipse cx="25" cy="5" rx="25" ry="15" transform="rotate(70 25 5)" fill="#E85D50" opacity="0.85"/>
+                  <ellipse cx="-5" cy="20" rx="25" ry="15" transform="rotate(130 -5 20)" fill="#E85D50" opacity="0.85"/>
+                  <circle cx="5" cy="-5" r="12" fill="#2d3a2c"/>
+                </g>
+              </svg>
+            )}
+          </a>
+          <div class="post__content">
+            <div class="post__meta">
+              <span class="post__cat">{featured.data.category}</span>
+              <span class="dot">·</span>
+              <span>{fmtDate(featured.data.date)}</span>
+            </div>
+            <h3 class="post__title"><a href={`/journal/${featured.id}`}>{featured.data.title}</a></h3>
+            <p class="post__excerpt">{featured.data.excerpt}</p>
+            <span class="post__author">— {featured.data.author}</span>
+          </div>
+        </article>
+      )}
+
+      {journalPosts.map(post => (
+        <article class="post">
+          <a href={`/journal/${post.id}`} class="post__image">
+            {post.data.image ? (
+              <img src={post.data.image} alt={post.data.imageAlt || post.data.title} />
+            ) : (
+              <svg class="post__placeholder" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="300" fill="#A9BE8F"/>
+                <g transform="translate(200, 150)">
+                  <ellipse cx="0" cy="-10" rx="18" ry="10" fill="#F4B6C2"/>
+                  <ellipse cx="14" cy="6" rx="18" ry="10" transform="rotate(72 14 6)" fill="#F4B6C2"/>
+                  <ellipse cx="4" cy="22" rx="18" ry="10" transform="rotate(144 4 22)" fill="#F4B6C2"/>
+                  <ellipse cx="-14" cy="14" rx="18" ry="10" transform="rotate(216 -14 14)" fill="#F4B6C2"/>
+                  <ellipse cx="-12" cy="-6" rx="18" ry="10" transform="rotate(288 -12 -6)" fill="#F4B6C2"/>
+                  <circle cx="0" cy="4" r="7" fill="#E8B84A"/>
+                </g>
+              </svg>
+            )}
+          </a>
+          <div class="post__content">
+            <div class="post__meta">
+              <span class="post__cat">{post.data.category}</span>
+              <span class="dot">·</span>
+              <span>{fmtDate(post.data.date)}</span>
+            </div>
+            <h3 class="post__title"><a href={`/journal/${post.id}`}>{post.data.title}</a></h3>
+            <p class="post__excerpt">{post.data.excerpt}</p>
+            <span class="post__author">— {post.data.author}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="journal__more">
+      <a href="/journal" class="btn btn--ghost">
+        <span>Read all stories</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L7 1m6 6l-6 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pullquote">
+  <div class="pullquote__inner">
+    <Wildflowers variant="bouquet" size={90} class="pullquote__ornament" />
+    <p class="pullquote__text">
+      We stopped waiting. We started planting.<br/>
+      And then, after all those years — <em>everything bloomed.</em>
+    </p>
+    <p class="pullquote__attr">
+      <span class="pullquote__attr-rule"></span>
+      Kayla
+      <span class="pullquote__attr-rule"></span>
+    </p>
+  </div>
+</section>
+
+<!-- SUBSCRIBE -->
+<section id="subscribe" class="subscribe">
+  <Wildflowers variant="poppy" size={90} class="subscribe__ornament-bg subscribe__ornament-bg--l" />
+  <Wildflowers variant="cosmos" size={90} class="subscribe__ornament-bg subscribe__ornament-bg--r" />
+  <div class="subscribe__inner">
+    <h2 class="subscribe__title">
+      A little note<br/>
+      <em>every week</em>
+    </h2>
+    <p class="subscribe__lede">
+      A short letter and a short devotional — in your inbox once a week, on Sundays. Just life at Prairie Creek, a verse I'm sitting with, and something simple to cook or make.
+    </p>
+
+    <form class="subscribe__form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="event.preventDefault(); this.querySelector('.subscribe__success').hidden=false; this.querySelector('.subscribe__fields').hidden=true;">
+      <input type="hidden" name="form-name" value="newsletter" />
+      <p style="display:none"><label>Don't fill this: <input name="bot-field" /></label></p>
+      <div class="subscribe__fields">
+        <label class="subscribe__label">
+          <span>First name</span>
+          <input type="text" name="name" required />
+        </label>
+        <label class="subscribe__label">
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <button type="submit" class="btn btn--primary btn--full">
+          <span>Send me Sundays</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L7 1m6 6l-6 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="subscribe__success" hidden>
+        <p><em>Thank you, friend. See you on Sunday.</em></p>
+      </div>
+    </form>
+    <p class="subscribe__fine">No spam, no selling your email, ever. Unsubscribe any time.</p>
+  </div>
+</section>
+
+</BaseLayout>

@@ -1,0 +1,86 @@
+---
+export interface Props {
+  variant?: 'poppy' | 'cosmos' | 'both' | 'sprig' | 'bouquet';
+  size?: number;
+  class?: string;
+}
+const { variant = 'both', size = 80, class: className = '' } = Astro.props;
+---
+
+{variant === 'poppy' && (
+  <svg class={className} width={size} height={size} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="38" cy="42" rx="14" ry="8" transform="rotate(-30 38 42)" fill="#E85D50"/>
+    <ellipse cx="54" cy="34" rx="14" ry="8" transform="rotate(20 54 34)" fill="#E85D50"/>
+    <ellipse cx="58" cy="52" rx="14" ry="8" transform="rotate(70 58 52)" fill="#E85D50"/>
+    <ellipse cx="44" cy="60" rx="14" ry="8" transform="rotate(130 44 60)" fill="#E85D50"/>
+    <circle cx="48" cy="46" r="6.5" fill="#2d3a2c"/>
+    <circle cx="48" cy="46" r="3" fill="#E8B84A"/>
+  </svg>
+)}
+
+{variant === 'cosmos' && (
+  <svg class={className} width={size} height={size} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="50" cy="30" rx="10" ry="6" fill="#F4B6C2"/>
+    <ellipse cx="66" cy="40" rx="10" ry="6" transform="rotate(72 66 40)" fill="#F4B6C2"/>
+    <ellipse cx="60" cy="58" rx="10" ry="6" transform="rotate(144 60 58)" fill="#F4B6C2"/>
+    <ellipse cx="40" cy="58" rx="10" ry="6" transform="rotate(216 40 58)" fill="#F4B6C2"/>
+    <ellipse cx="34" cy="40" rx="10" ry="6" transform="rotate(288 34 40)" fill="#F4B6C2"/>
+    <circle cx="50" cy="46" r="5" fill="#E8B84A"/>
+  </svg>
+)}
+
+{variant === 'both' && (
+  <svg class={className} width={size} height={size} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g>
+      <ellipse cx="28" cy="30" rx="10" ry="6" transform="rotate(-30 28 30)" fill="#E85D50"/>
+      <ellipse cx="40" cy="22" rx="10" ry="6" transform="rotate(20 40 22)" fill="#E85D50"/>
+      <ellipse cx="44" cy="34" rx="10" ry="6" transform="rotate(70 44 34)" fill="#E85D50"/>
+      <ellipse cx="32" cy="42" rx="10" ry="6" transform="rotate(130 32 42)" fill="#E85D50"/>
+      <circle cx="36" cy="32" r="5" fill="#2d3a2c"/>
+    </g>
+    <g>
+      <ellipse cx="70" cy="60" rx="8" ry="5" fill="#F4B6C2"/>
+      <ellipse cx="78" cy="68" rx="8" ry="5" transform="rotate(72 78 68)" fill="#F4B6C2"/>
+      <ellipse cx="74" cy="78" rx="8" ry="5" transform="rotate(144 74 78)" fill="#F4B6C2"/>
+      <ellipse cx="64" cy="74" rx="8" ry="5" transform="rotate(216 64 74)" fill="#F4B6C2"/>
+      <ellipse cx="62" cy="64" rx="8" ry="5" transform="rotate(288 62 64)" fill="#F4B6C2"/>
+      <circle cx="70" cy="69" r="4" fill="#E8B84A"/>
+    </g>
+  </svg>
+)}
+
+{variant === 'sprig' && (
+  <svg class={className} width={size} height={size} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M50,90 Q50,60 50,20" stroke="#7d8866" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="40" cy="70" rx="8" ry="4" transform="rotate(-30 40 70)" fill="#A9BE8F"/>
+    <ellipse cx="60" cy="60" rx="8" ry="4" transform="rotate(30 60 60)" fill="#A9BE8F"/>
+    <ellipse cx="38" cy="50" rx="8" ry="4" transform="rotate(-30 38 50)" fill="#A9BE8F"/>
+    <ellipse cx="62" cy="40" rx="8" ry="4" transform="rotate(30 62 40)" fill="#A9BE8F"/>
+    <circle cx="50" cy="22" r="5" fill="#E85D50"/>
+    <circle cx="50" cy="22" r="2.5" fill="#2d3a2c"/>
+  </svg>
+)}
+
+{variant === 'bouquet' && (
+  <svg class={className} width={size} height={size} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M40,95 L50,50 M50,95 L50,50 M60,95 L50,50" stroke="#7d8866" stroke-width="1.2" fill="none"/>
+    <ellipse cx="30" cy="65" rx="9" ry="5" transform="rotate(-40 30 65)" fill="#A9BE8F"/>
+    <ellipse cx="70" cy="65" rx="9" ry="5" transform="rotate(40 70 65)" fill="#A9BE8F"/>
+    <ellipse cx="30" cy="40" rx="7" ry="4" fill="#B8A8D4"/>
+    <ellipse cx="38" cy="44" rx="7" ry="4" transform="rotate(72 38 44)" fill="#B8A8D4"/>
+    <ellipse cx="34" cy="52" rx="7" ry="4" transform="rotate(144 34 52)" fill="#B8A8D4"/>
+    <ellipse cx="22" cy="52" rx="7" ry="4" transform="rotate(216 22 52)" fill="#B8A8D4"/>
+    <ellipse cx="22" cy="44" rx="7" ry="4" transform="rotate(288 22 44)" fill="#B8A8D4"/>
+    <circle cx="30" cy="46" r="3" fill="#E8B84A"/>
+    <ellipse cx="58" cy="35" rx="10" ry="6" transform="rotate(-30 58 35)" fill="#E85D50"/>
+    <ellipse cx="70" cy="28" rx="10" ry="6" transform="rotate(20 70 28)" fill="#E85D50"/>
+    <ellipse cx="75" cy="42" rx="10" ry="6" transform="rotate(70 75 42)" fill="#E85D50"/>
+    <ellipse cx="62" cy="48" rx="10" ry="6" transform="rotate(130 62 48)" fill="#E85D50"/>
+    <circle cx="66" cy="38" r="4.5" fill="#2d3a2c"/>
+    <circle cx="50" cy="62" r="5" fill="#F4B6C2"/>
+    <circle cx="54" cy="66" r="5" fill="#F4B6C2"/>
+    <circle cx="50" cy="70" r="5" fill="#F4B6C2"/>
+    <circle cx="46" cy="66" r="5" fill="#F4B6C2"/>
+    <circle cx="50" cy="66" r="2" fill="#E8B84A"/>
+  </svg>
+)}

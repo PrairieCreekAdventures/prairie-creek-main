@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function fmtDate(d: Date) {
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+---
+
+<BaseLayout title="The Journal — Prairie Creek Adventures">
+
+<section class="archive">
+  <header class="archive__header">
+    <h1 class="archive__title">
+      The <em>journal</em>
+    </h1>
+    <p class="archive__sub">Every story we've written, in one place. Farm days, recipes, hope notes, and everything in between.</p>
+  </header>
+
+  <div class="archive__grid">
+    {posts.map(post => (
+      <article class="post">
+        <a href={`/journal/${post.id}`} class="post__image">
+          {post.data.image ? (
+            <img src={post.data.image} alt={post.data.imageAlt || post.data.title} />
+          ) : (
+            <svg class="post__placeholder" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="300" fill="#A9BE8F"/>
+              <g transform="translate(200, 150)">
+                <ellipse cx="-10" cy="-5" rx="20" ry="12" transform="rotate(-30 -10 -5)" fill="#E85D50"/>
+                <ellipse cx="12" cy="-12" rx="20" ry="12" transform="rotate(20 12 -12)" fill="#E85D50"/>
+                <ellipse cx="18" cy="8" rx="20" ry="12" transform="rotate(70 18 8)" fill="#E85D50"/>
+                <ellipse cx="-2" cy="18" rx="20" ry="12" transform="rotate(130 -2 18)" fill="#E85D50"/>
+                <circle cx="4" cy="-2" r="9" fill="#2d3a2c"/>
+              </g>
+            </svg>
+          )}
+        </a>
+        <div class="post__content">
+          <div class="post__meta">
+            <span class="post__cat">{post.data.category}</span>
+            <span class="dot">·</span>
+            <span>{fmtDate(post.data.date)}</span>
+          </div>
+          <h3 class="post__title"><a href={`/journal/${post.id}`}>{post.data.title}</a></h3>
+          <p class="post__excerpt">{post.data.excerpt}</p>
+          <span class="post__author">— {post.data.author}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+</BaseLayout>

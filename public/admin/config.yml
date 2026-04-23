@@ -1,0 +1,86 @@
+# Decap CMS Configuration — Prairie Creek Adventures
+# After setup, update the auth_endpoint and auth_token_endpoint lines with your DecapBridge site ID.
+
+backend:
+  name: git-gateway
+  # ⬇ Update this repo line if your GitHub repo has a different name
+  repo: PrairieCreekAdventures/prairie-creek-adventures
+  branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  # ⬇ PASTE YOUR DECAPBRIDGE SITE ID INTO THE NEXT TWO LINES
+  auth_endpoint: /sites/YOUR-DECAPBRIDGE-SITE-ID/pkce
+  auth_token_endpoint: /sites/YOUR-DECAPBRIDGE-SITE-ID/token
+  gateway_url: https://gateway.decapbridge.com
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" - {{author-name}} via DecapBridge
+    update: Update {{collection}} "{{slug}}" - {{author-name}} via DecapBridge
+    delete: Delete {{collection}} "{{slug}}" - {{author-name}} via DecapBridge
+    uploadMedia: Upload "{{path}}" - {{author-name}} via DecapBridge
+    deleteMedia: Delete "{{path}}" - {{author-name}} via DecapBridge
+
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
+
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+
+# Where uploaded images are stored
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Editorial workflow (drafts → review → publish)
+publish_mode: editorial_workflow
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    label_singular: "Post"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "journal/{{slug}}"
+    summary: "{{title}} — {{date | date('MMM D, YYYY')}} [{{category}}]"
+    sortable_fields: ['date', 'title', 'category']
+    view_filters:
+      - label: "Featured"
+        field: featured
+        pattern: true
+      - label: "Drafts"
+        field: draft
+        pattern: true
+      - label: "Farm Life"
+        field: category
+        pattern: "Farm Life"
+      - label: "Recipes"
+        field: category
+        pattern: "Recipe"
+      - label: "Hope & Faith"
+        field: category
+        pattern: "Hope & Faith"
+      - label: "June Bug"
+        field: category
+        pattern: "June Bug"
+      - label: "Garden"
+        field: category
+        pattern: "Garden"
+      - label: "Savvy Bunny"
+        field: category
+        pattern: "Savvy Bunny"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Author", name: "author", widget: "string", default: "Kayla" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Farm Life", "Recipe", "Hope & Faith", "June Bug", "Garden", "Savvy Bunny"]
+        default: "Farm Life"
+      - { label: "Short Excerpt", name: "excerpt", widget: "text", hint: "Shown on homepage cards and post headers. Aim for 1-2 sentences." }
+      - { label: "Hero Image", name: "image", widget: "image", required: false, hint: "Recommended size: 1600x900px. Compress large photos at tinypng.com before uploading." }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string", required: false, hint: "Short description of the image for accessibility and screen readers." }
+      - { label: "Feature on homepage?", name: "featured", widget: "boolean", default: false, hint: "Only one post should be featured at a time." }
+      - { label: "Save as draft", name: "draft", widget: "boolean", default: false, hint: "Drafts stay hidden from the live site." }
+      - { label: "Body", name: "body", widget: "markdown" }

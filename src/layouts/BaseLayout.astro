@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Prairie Creek Adventures — a lifestyle journal of hope, farm life, and family',
+  description = 'A family of three, a few animals, a vintage camper, and a whole lot of hope. Farm life, recipes, adoption, and everyday joy from Prairie Creek Adventures in Arkansas.'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Parisienne&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+</head>
+<body>
+
+<div class="announce">
+  <div class="announce__inner">
+    <span class="announce__dot"></span>
+    <span>New here? Start with our story</span>
+    <span class="announce__sep">·</span>
+    <a href="/about">About us</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <nav class="nav nav--left">
+      <a href="/journal">Journal</a>
+      <a href="/about">About</a>
+    </nav>
+
+    <a href="/" class="wordmark">
+      <span class="wordmark__top">Prairie Creek</span>
+      <span class="wordmark__bot">Adventures</span>
+    </a>
+
+    <nav class="nav nav--right">
+      <a href="/recipes">Recipes</a>
+      <a href="/#subscribe" class="nav__cta">Subscribe</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <slot />
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="site-footer__wordmark">Prairie Creek</span>
+      <span class="site-footer__sub">Adventures · Est. 2024</span>
+      <span class="site-footer__tagline">A lifestyle journal of hope, farm life, and family — written from a small farm in Arkansas.</span>
+    </div>
+
+    <nav class="site-footer__nav">
+      <div class="site-footer__col">
+        <h5>Read</h5>
+        <a href="/journal">The Journal</a>
+        <a href="/recipes">Recipes</a>
+        <a href="/category/farm-life">Farm Life</a>
+        <a href="/category/hope-faith">Hope &amp; Faith</a>
+      </div>
+      <div class="site-footer__col">
+        <h5>About</h5>
+        <a href="/about">Our Story</a>
+        <a href="/category/june-bug">June Bug's Journey</a>
+        <a href="/category/savvy-bunny">Savvy Bunny</a>
+        <a href="/#subscribe">Newsletter</a>
+      </div>
+      <div class="site-footer__col">
+        <h5>Follow</h5>
+        <a href="https://www.facebook.com/prairiecreekadventures" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/prairiecreekadventures" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">Pinterest</a>
+        <a href="/#subscribe">Subscribe</a>
+      </div>
+    </nav>
+  </div>
+  <div class="site-footer__base">
+    <span>© 2026 Prairie Creek Adventures</span>
+    <span class="site-footer__sep">✿</span>
+    <span>Made with joy in Arkansas</span>
+  </div>
+</footer>
+
+<script src="/script.js"></script>
+</body>
+</html>
