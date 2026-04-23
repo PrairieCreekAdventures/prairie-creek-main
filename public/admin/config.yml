@@ -14,33 +14,63 @@ auth:
   last_name_claim: last_name
   avatar_url_claim: avatar_url
 
-logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 site_url: https://prairiecreekmain.netlify.app
 display_url: https://prairiecreekmain.netlify.app
 
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+media_folder: public/images/uploads
+public_folder: /images/uploads
 
 publish_mode: editorial_workflow
 
 collections:
-  - name: "posts"
-    label: "Posts"
-    label_singular: "Post"
-    folder: "src/content/posts"
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: src/content/posts
     create: true
     slug: "{{slug}}"
-    preview_path: "journal/{{slug}}"
+    preview_path: journal/{{slug}}
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Author"
-        name: "author"
-        widget: "string"
-        default: "Kayla"
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Category"
-        name: "cat
+      - label: Title
+        name: title
+        widget: string
+      - label: Author
+        name: author
+        widget: string
+        default: Kayla
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Farm Life
+          - Recipe
+          - Hope and Faith
+          - June Bug
+          - Garden
+          - Savvy Bunny
+        default: Farm Life
+      - label: Short Excerpt
+        name: excerpt
+        widget: text
+      - label: Hero Image
+        name: image
+        widget: image
+        required: false
+      - label: Image Alt Text
+        name: imageAlt
+        widget: string
+        required: false
+      - label: Feature on homepage
+        name: featured
+        widget: boolean
+        default: false
+      - label: Save as draft
+        name: draft
+        widget: boolean
+        default: false
+      - label: Body
+        name: body
+        widget: markdown
