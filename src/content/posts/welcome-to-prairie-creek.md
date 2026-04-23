@@ -35,7 +35,7 @@ This isn't going to be a perfectly curated lifestyle blog. I'm ADHD and I write 
 
 ## Why we're doing this
 
-Because something changed when we stopped waiting for life and started planting it. The farm happened. Our daughter happened. Joy happened. And now we want to document it — partly for Savannah, partly for our family, partly for anyone out there who needs a reminder that beautiful things can still come from the ground you thought was dead. I'm living like it's  2012 and blogs are all the rage because this is really more for us than anyone else.
+Because something changed when we stopped waiting for life and started planting it. The farm happened. Our daughter happened. Joy happened. And now we want to document it — partly for Savannah, partly for our family, partly for anyone out there who needs a reminder that beautiful things can still come from the ground you thought was dead. We looked back at pictures and videos of our farm from 12-15 months ago and it's unreal how different it looks. We have worked tirelessly on it and we are so proud. I'm living like it's  2012 and blogs are all the rage because this is really more for us than anyone else. 
 
 So pull up a chair. I'll put the kettle on.
 
