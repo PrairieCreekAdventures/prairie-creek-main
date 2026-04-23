@@ -5,7 +5,7 @@ date: 2026-04-22
 category: Farm Life
 excerpt: A little note from the front porch — on why we're here, what we're
   writing about, and what you can expect if you stick around.
-image: /images/uploads/adventures-on-prairie-creek-pfp-2-.png
+image: /images/uploads/adventures-on-prairie-creek-pfp-1600-x-900-px-.png
 imageAlt: David, Kayla, Savannah at the Farmers' Market Spring 2026
 featured: true
 draft: false
