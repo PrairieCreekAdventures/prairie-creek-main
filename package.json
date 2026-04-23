@@ -1,0 +1,16 @@
+{
+  "name": "prairie-creek-adventures",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Prairie Creek Adventures — a lifestyle journal of hope, farm life, and family.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}
