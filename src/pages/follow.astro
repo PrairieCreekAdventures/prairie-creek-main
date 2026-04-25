@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Wildflowers from '../components/Wildflowers.astro';
+---
+
+<BaseLayout title="Follow Along — Prairie Creek Adventures" description="Three small worlds, one family. Find Prairie Creek Adventures, Kayla, and the Savvy Bunny storybook on social.">
+
+<section class="follow">
+  <header class="follow__header">
+    <span class="about-page__eyebrow">Follow along</span>
+    <h1 class="follow__title">
+      Three small worlds,<br/>
+      <em>one family</em>
+    </h1>
+    <p class="follow__sub">Pick what you want more of — and we'll see you over there.</p>
+  </header>
+
+  <div class="follow__cards">
+
+    <!-- Card 1: Prairie Creek Adventures -->
+    <article class="follow-card">
+      <div class="follow-card__head">
+        <Wildflowers variant="poppy" size={50} class="follow-card__ornament" />
+        <div>
+          <div class="follow-card__brand-script">Prairie Creek</div>
+          <div class="follow-card__brand-sub">Adventures</div>
+        </div>
+      </div>
+      <p class="follow-card__desc">Farm life, recipes, family, and a whole lot of hope. The main hub of everything we're up to.</p>
+      <div class="follow-card__links">
+        <a href="https://www.facebook.com/adventuresonprairiecreek" target="_blank" rel="noopener" class="follow-link">
+          <span class="follow-link__platform">Facebook</span>
+          <span class="follow-link__handle">/adventuresonprairiecreek</span>
+        </a>
+        <a href="https://www.instagram.com/prairiecreekadventures" target="_blank" rel="noopener" class="follow-link">
+          <span class="follow-link__platform">Instagram</span>
+          <span class="follow-link__handle">@prairiecreekadventures</span>
+        </a>
+        <a href="https://www.tiktok.com/@prairiecreekadventures" target="_blank" rel="noopener" class="follow-link">
+          <span class="follow-link__platform">TikTok</span>
+          <span class="follow-link__handle">@prairiecreekadventures</span>
+        </a>
+        <a href="https://www.youtube.com/@adventuresonprairiecreek" target="_blank" rel="noopener" class="follow-link">
+          <span class="follow-link__platform">YouTube</span>
+          <span class="follow-link__handle">@adventuresonprairiecreek</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card 2: Kayla -->
+    <article class="follow-card">
+      <div class="follow-card__head">
+        <Wildflowers variant="cosmos" size={50} class="follow-card__ornament" />
+        <div>
+          <div class="follow-card__brand-italic">Kayla</div>
+          <div class="follow-card__brand-sub follow-card__brand-sub--gray">just me</div>
+        </div>
+      </div>
+      <p class="follow-card__desc">My personal corner — standup, writing, the unfiltered me. Fair warning: I'm a little louder over here.</p>
+      <div class="follow-card__links">
+        <a href="https://www.facebook.com/KaylaCNorris/" target="_blank" rel="noopener" class="follow-link">
+          <span class="follow-link__platform">Facebook</span>
+          <span class="follow-link__handle">/KaylaCNorris</span>
+        </a>
+        <a href="https://www.instagram.com/kaylacnorris" target="_blank" rel="noopener" class="follow-link">
+          <span class="follow-link__platform">Instagram</span>
+          <span class="follow-link__handle">@kaylacnorris</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card 3: Storybook -->
+    <article class="follow-card">
+      <div class="follow-card__head">
+        <Wildflowers variant="bouquet" size={50} class="follow-card__ornament" />
+        <div>
+          <div class="follow-card__brand-script">Storybook</div>
+          <div class="follow-card__brand-sub">Prairie Creek</div>
+        </div>
+      </div>
+      <p class="follow-card__desc">Children's stories featuring Savvy Bunny — our girl, but make it fiction. A growing little world for little readers.</p>
+      <div class="follow-card__links">
+        <a href="https://www.facebook.com/profile.php?id=61570961847335" target="_blank" rel="noopener" class="follow-link">
+          <span class="follow-link__platform">Facebook</span>
+          <span class="follow-link__handle">Prairie Creek Storybook</span>
+        </a>
+      </div>
+    </article>
+
+  </div>
+
+  <p class="follow__footer">
+    Or come back here for the long-form journal. <a href="/journal">Read the latest →</a>
+  </p>
+</section>
+
+</BaseLayout>
+
+<style>
+  .follow {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 6rem);
+    background: var(--buttercream);
+  }
+  .follow__header {
+    max-width: 720px;
+    margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+    padding: 0 var(--gutter);
+    text-align: center;
+  }
+  .follow__title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 1.25rem;
+    color: var(--stem);
+  }
+  .follow__title em {
+    font-family: var(--script);
+    font-style: normal;
+    color: var(--olive-deep);
+    font-size: 1.15em;
+    display: inline-block;
+  }
+  .follow__sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--brown);
+    line-height: 1.55;
+  }
+
+  .follow__cards {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .follow-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 2rem 2rem 2.25rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .follow-card:hover {
+    border-color: var(--poppy);
+    box-shadow: 0 20px 40px -25px rgba(232, 93, 80, 0.18);
+  }
+
+  .follow-card__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .follow-card__ornament {
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .follow-card:hover .follow-card__ornament {
+    transform: rotate(-8deg) scale(1.08);
+  }
+  .follow-card__brand-script {
+    font-family: var(--script);
+    font-size: 2rem;
+    color: var(--olive-deep);
+    line-height: 0.95;
+  }
+  .follow-card__brand-italic {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.85rem;
+    color: var(--stem);
+    line-height: 1;
+    font-weight: 400;
+  }
+  .follow-card__brand-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--poppy);
+    margin-top: 2px;
+  }
+  .follow-card__brand-sub--gray {
+    color: var(--brown);
+    font-size: 0.9rem;
+  }
+
+  .follow-card__desc {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+  }
+
+  .follow-card__links {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .follow-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    background: var(--buttercream);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+  .follow-link:hover {
+    background: var(--paper);
+    border-color: var(--poppy);
+    transform: translateX(2px);
+  }
+  .follow-link__platform {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--poppy);
+    font-weight: 500;
+  }
+  .follow-link__handle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--brown);
+  }
+
+  .follow__footer {
+    max-width: 600px;
+    margin: 3rem auto 0;
+    padding: 0 var(--gutter);
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--brown);
+    font-size: 1rem;
+  }
+  .follow__footer a {
+    color: var(--poppy);
+    border-bottom: 1px solid currentColor;
+  }
+
+  @media (max-width: 560px) {
+    .follow-link {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+  }
+</style>
