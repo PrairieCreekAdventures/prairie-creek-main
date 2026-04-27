@@ -985,6 +985,42 @@ img, svg { display: block; max-width: 100%; }
 }
 .single__meta .dot { opacity: 0.45; }
 
+/* ============ JUMP TO RECIPE BUTTON ============ */
+.jump-to-recipe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--poppy);
+  background: transparent;
+  border: 1.5px solid var(--poppy);
+  border-radius: 999px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.jump-to-recipe:hover {
+  background: var(--poppy);
+  color: var(--buttercream);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgba(232, 93, 80, 0.4);
+}
+.jump-to-recipe svg {
+  transition: transform 0.25s;
+}
+.jump-to-recipe:hover svg {
+  transform: translateY(2px);
+}
+
+/* The anchor target needs scroll offset so it doesn't hide under the sticky header */
+#ingredients {
+  scroll-margin-top: 100px;
+}
+
 .single__hero {
   max-width: 1060px;
   margin: 0 auto clamp(3rem, 5vw, 4rem);
