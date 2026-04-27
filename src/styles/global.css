@@ -1059,6 +1059,46 @@ img, svg { display: block; max-width: 100%; }
   font-size: 1.3rem;
   color: var(--olive-deep);
 }
+
+/* ============ SCRIPTURE BLOCKQUOTES ============ */
+/* Use anywhere in posts: <blockquote class="scripture">...<cite>Reference</cite></blockquote> */
+.single__body blockquote.scripture,
+.about-page__body blockquote.scripture {
+  border-left: 2px solid var(--poppy);
+  background: var(--paper);
+  border-radius: 0 10px 10px 0;
+  padding: 1.5rem 1.5rem 1.25rem 1.5rem;
+  margin: 2.25rem 0;
+  font-size: 1.1rem;
+}
+
+.single__body blockquote.scripture p,
+.about-page__body blockquote.scripture p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--stem);
+  margin: 0 0 0.85rem;
+}
+
+.single__body blockquote.scripture p:last-of-type,
+.about-page__body blockquote.scripture p:last-of-type {
+  margin-bottom: 0.85rem;
+}
+
+.single__body blockquote.scripture cite,
+.about-page__body blockquote.scripture cite {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brown);
+  font-style: normal;
+  font-weight: 500;
+  display: block;
+  margin-top: 0.5rem;
+}
 .single__body ul, .single__body ol {
   margin: 1.25rem 0 1.5rem 1.5rem;
   padding: 0;
