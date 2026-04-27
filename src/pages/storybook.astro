@@ -1,0 +1,321 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const STORIES = [
+  {
+    title: "Making Flower Crowns on Prairie Creek",
+    cover: "/images/uploads/making-wildflower-crowns-with-savvy-bunny.png",
+    coverAlt: "Cover artwork: a young bunny in a blue dress wearing a flower crown, dancing through a wildflower field with a friend and two ducks watching",
+    inspiration: "I recently introduced Savannah to all of her farm animals. She was tickled, and I told her we'd make them all flower crowns someday. This story is my promise to her that we are going to make her beloved farm animals (even the chickens) flower crowns with flowers from our farm.",
+    videoUrl: "https://www.facebook.com/share/v/1b4skBm2pQ/",
+  },
+  {
+    title: "Savvy Paints the Barn with Papa on Prairie Creek",
+    cover: "/images/uploads/savvy-bunny-paints-the-barn-with-papa.png",
+    coverAlt: "Cover artwork: a small bunny in overalls being held up by Papa Bunny in a flannel shirt, painting the side of a red barn while a Great Pyrenees watches from below",
+    inspiration: "This barn and land is as much hers as it is ours. When she's old enough, we will let her work all the projects she can with us. This is us dreaming about doing those projects with her someday. Our barn has to be restored, and even if all she can do right now is give us a handprint, that's what we'll do — to let her put her \"stamp\" on it.",
+    videoUrl: "https://www.facebook.com/share/v/1ETuAao6Lk/",
+  },
+];
+
+const HERO_COVER = STORIES[0].cover;
+const HERO_ALT = STORIES[0].coverAlt;
+
+const TITLE = "Prairie Creek Storybook — Prairie Creek Adventures";
+const DESCRIPTION = "Watercolor stories of farm life, family, and the dreams we're holding for our daughter. Featuring Savvy Bunny.";
+---
+
+<BaseLayout title={TITLE} description={DESCRIPTION}>
+
+  <section class="storybook-hero">
+    <div class="storybook-hero__inner">
+      <div class="storybook-hero__art">
+        <img src={HERO_COVER} alt={HERO_ALT} />
+      </div>
+      <div class="storybook-hero__text">
+        <span class="storybook-hero__eyebrow">A note from Kayla</span>
+        <h1 class="storybook-hero__title">Prairie Creek Storybook</h1>
+        <p class="storybook-hero__sub">Watercolor stories from a small farm in Arkansas — and the dreams we are holding for our daughter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="storybook-letter">
+    <div class="storybook-letter__inner">
+      <p>Prairie Creek Farms was established for the future. We didn't know if that future was going to include children, but that didn't let us stop dreaming about that possibility. Now that it's reality, these stories are a reflection of the future I hope our Savvy girl has on her farm. She's already such a farm girl, and I hope she makes the most magical memories here — like I did in the woods behind my house when I was growing up.</p>
+    </div>
+  </section>
+
+  <section class="storybook-bridge">
+    <div class="storybook-bridge__inner">
+      <p>Most of these moments haven't happened yet. We made the stories first.</p>
+      <p>Savannah is still so little — three months old, mostly preoccupied with her milk and the ceiling fan in our living room. The flower crowns and the barn and the long afternoons doing real work side by side are all in front of us, not behind us. So I'm telling them as stories.</p>
+      <p>The Savvy Bunny world is the version of Prairie Creek I keep promising my daughter. It's also the version I get to share publicly without ever having to share <em>her</em>. Her real story belongs to her. Savvy belongs to anyone who needs a soft place to land.</p>
+      <p>Someday these illustrations will be replaced with real photos. Real Savannah holding a real wildflower crown over a real chicken's head. Real Savannah painting a stripe on the real barn while David lifts her up. When that day comes, I'll update this page. The dreams will become evidence.</p>
+    </div>
+  </section>
+
+  <section class="storybook-stories">
+    <div class="storybook-stories__inner">
+      <h2 class="storybook-stories__heading">The Stories</h2>
+      <div class="storybook-stories__grid">
+        {STORIES.map((story) => (
+          <article class="storybook-card">
+            <div class="storybook-card__cover">
+              <img src={story.cover} alt={story.coverAlt} />
+            </div>
+            <div class="storybook-card__body">
+              <h3 class="storybook-card__title">{story.title}</h3>
+              <p class="storybook-card__inspiration">{story.inspiration}</p>
+              <p class="storybook-card__note"><em>One day, this story will get a real photo. For now, it lives in watercolor.</em></p>
+              <a href={story.videoUrl} target="_blank" rel="noopener noreferrer" class="storybook-card__cta">
+                <span>Watch the story on Facebook</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M5 1h8v8M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="storybook-future">
+    <div class="storybook-future__inner">
+      <p>More stories are coming. They are slow, and that is on purpose. <a href="https://www.facebook.com/profile.php?id=61570961847335" target="_blank" rel="noopener noreferrer">Follow along on Facebook</a> to see them as they arrive.</p>
+      <p class="storybook-future__credit">Story and art direction by Kayla. At this time, the illustrations are created with AI watercolor tools. These stories are not being sold. They're just dreams right now. My goal is to create something completely original and unique with an artist someday if I ever get to the point that I'd like to produce a children's book.</p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ============ STORYBOOK PAGE ============ */
+
+  .storybook-hero {
+    padding: 4rem 1.5rem 3rem;
+    background: var(--buttercream);
+  }
+  .storybook-hero__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .storybook-hero__art {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -20px rgba(74, 61, 42, 0.25);
+  }
+  .storybook-hero__art img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .storybook-hero__eyebrow {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brown);
+  }
+  .storybook-hero__title {
+    font-family: var(--script);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    color: var(--primary);
+    margin: 0.25rem 0 1rem;
+    line-height: 1;
+    font-weight: 400;
+  }
+  .storybook-hero__sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 480px;
+  }
+
+  .storybook-letter {
+    padding: 4rem 1.5rem 2rem;
+    background: var(--buttercream);
+  }
+  .storybook-letter__inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .storybook-letter__inner p {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .storybook-bridge {
+    padding: 2rem 1.5rem 5rem;
+    background: var(--buttercream);
+  }
+  .storybook-bridge__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .storybook-bridge__inner p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+  }
+  .storybook-bridge__inner p:first-child {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .storybook-stories {
+    padding: 5rem 1.5rem;
+    background: var(--paper);
+  }
+  .storybook-stories__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .storybook-stories__heading {
+    font-family: var(--serif);
+    font-size: 2.25rem;
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 3rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .storybook-stories__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .storybook-card {
+    background: var(--buttercream);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px -16px rgba(74, 61, 42, 0.18);
+    display: flex;
+    flex-direction: column;
+  }
+  .storybook-card__cover {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+  }
+  .storybook-card__cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .storybook-card__body {
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .storybook-card__title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    line-height: 1.25;
+    color: var(--primary);
+    margin: 0 0 1rem;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .storybook-card__inspiration {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  .storybook-card__note {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--brown);
+    margin: 0 0 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(138, 106, 58, 0.2);
+  }
+  .storybook-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 0.65rem 1.25rem;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--poppy);
+    background: transparent;
+    border: 1.5px solid var(--poppy);
+    border-radius: 999px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .storybook-card__cta:hover {
+    background: var(--poppy);
+    color: var(--buttercream);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -8px rgba(232, 93, 80, 0.4);
+  }
+
+  .storybook-future {
+    padding: 4rem 1.5rem 6rem;
+    background: var(--paper);
+  }
+  .storybook-future__inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .storybook-future__inner p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .storybook-future__inner a {
+    color: var(--poppy);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .storybook-future__credit {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--brown);
+  }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    .storybook-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .storybook-hero__text {
+      text-align: center;
+    }
+    .storybook-stories__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
