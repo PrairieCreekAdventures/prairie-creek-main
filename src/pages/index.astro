@@ -19,7 +19,7 @@ const categories = [
   { slug: 'hope-faith', num: '03', title: 'Hope &amp; Faith', sub: 'Adoption, answered prayers, devotionals, and the long road to now.', ornament: 'cosmos' },
   { slug: 'june-bug', num: '04', title: 'June Bug\'s Journey', sub: 'Restoring a vintage camper and everything she\'s teaching me along the way.', ornament: 'bouquet' },
   { slug: 'garden', num: '05', title: 'The Garden', sub: 'Wildflowers, raised beds, the wildflower field that\'s coming.', ornament: 'cosmos' },
-  { slug: 'savvy-bunny', num: '06', title: 'Savvy Bunny', sub: 'Little stories for little readers, starring our very own heroine.', ornament: 'both' },
+  { slug: 'savvy-bunny', num: '06', title: 'Savvy Bunny',     sub: 'Watercolor stories from a small farm in Arkansas, starring Savvy Bunny.', ornament: 'both', href: '/storybook' },
 ];
 ---
 
@@ -109,7 +109,7 @@ const categories = [
 
     <div class="categories__grid">
       {categories.map(cat => (
-        <a href={`/category/${cat.slug}`} class="cat-card">
+        <a href={cat.href || `/category/${cat.slug}`} class="cat-card">
           <Wildflowers variant={cat.ornament as any} size={48} class="cat-card__ornament" />
           <span class="cat-card__num">{cat.num}</span>
           <h4 class="cat-card__title" set:html={cat.title}></h4>
