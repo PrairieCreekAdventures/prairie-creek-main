@@ -4,7 +4,7 @@ author: "Kayla"
 date: 2026-04-27
 category: "Hope & Faith"
 excerpt: "\"If a man vows a vow to the Lord, or swears an oath to bind himself by a pledge, he shall not break his word. He shall do according to all that proceeds out of his mouth.\""
-image: "/images/uploads/YOUR-HERO-IMAGE-FILENAME-HERE.jpg"
+image: "/images/uploads/kayla-and-savannah-reading-scripture-together-.png"
 imageAlt: "Kayla and Savannah reading Scripture together"
 featured: true
 draft: false
