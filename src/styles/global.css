@@ -160,7 +160,7 @@ img, svg { display: block; max-width: 100%; }
 .wordmark__top {
   display: block;
   font-family: var(--script);
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: var(--olive-deep);
   line-height: 0.9;
