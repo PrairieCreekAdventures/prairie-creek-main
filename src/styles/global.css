@@ -67,7 +67,7 @@ img, svg { display: block; max-width: 100%; }
   text-transform: uppercase;
 }
 .announce__inner {
-  max-width: var(--max);
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0.75rem var(--gutter);
   display: flex;
